@@ -8,7 +8,7 @@ i = 0
 while i < len(lines):
     height = lines[i][1]
 
-    newData = lines[i+1:i+height]
+    newData = lines[i+1:i+height+1]
     data.append(newData)
 
     i += height + 1

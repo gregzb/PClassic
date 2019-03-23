@@ -10,19 +10,20 @@ i=0
 while i < len(lines):
     height = lines[i][0]
 
-    newData = lines[i+1:i+height]
+    newData = lines[i+1:i+height+1]
     data.append(newData)
 
     i += height + 1
 
 for dat in data:
-    slopes = []
-    for i, point1 in enumerate(dat[:-1]):
+    diagonals = {}
+    parallelograms = 0
+    for i, point1 in enumerate(dat):
         for point2 in dat[i+1:]:
-            val = 0
-            if point2[0]-point1[0] == 0:
-                val = None
+            added = (point1[0] + point2[0], point1[1] + point2[1])
+            if added in diagonals:
+                parallelograms += diagonals[added]
+                diagonals[added] += 1
             else:
-                val = (point2[1]-point1[1])/(point2[0]-point1[0])
-            slopes.append(val)
-    #print (slopes)
+                diagonals[added] = 1
+    print(parallelograms)
