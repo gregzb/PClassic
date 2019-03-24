@@ -2,7 +2,13 @@ def getEvenSubarrays(blocks):
     W = len(blocks[0])
     H = len(blocks)
 
+    print(W, H)
+    for row in blocks:
+        print(row)
+
     total = 0
+
+    combos = 0
 
     for y in range(H):
         for x in range(W):
@@ -13,19 +19,23 @@ def getEvenSubarrays(blocks):
                 for h1 in range(1, maxHeight + 1):
                     # x, y, w, h
                     total += 1 if sumIsEven(blocks, x, y, w1, h1) else 0
+                    combos += 1
+    print("combos:", combos)
     return total
 
 
 def sumIsEven(blocks, x, y, w, h):
     total = 0
-    #print(x, y, w, h)
     for x1 in range(x, x + w):
         for y1 in range(y, y + h):
             total += blocks[y1][x1]
+
+    #print(x, y, w, h, ":", total)
     return total % 2 == 0
 
 with open('input.txt', 'r') as f:
     lines = list(map(lambda x: list(map(int, x.strip().split(' '))), f.readlines()))
+
 
     data = []
 
@@ -39,5 +49,16 @@ with open('input.txt', 'r') as f:
 
         i += width * height + 1
 
-    for dat in data[:]:
+    # count = 0
+    #
+    # for y in range(3):
+    #     for x in range(2):
+    #         for h in range(1,3-y+1):
+    #             for w in range(1, 2-x+1):
+    #                 print(x, y, w, h)
+    #                 count += 1
+    #
+    # print (count)
+
+    for dat in data[4:5]:
         print(getEvenSubarrays(dat))

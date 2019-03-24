@@ -1,14 +1,20 @@
 def countEvenArrays(matrix):
 	input_arr = []
 
+	print(matrix)
+
 	for i in range(len(matrix) + 1):
 		input_arr.append([])
 		for j in range(len(matrix[0]) + 1):
 			input_arr[i].append(0)
 
+	print(input_arr)
+
 	for i in range(1, len(input_arr)):
 		for j in range(1, len(input_arr[0])):
 			input_arr[i][j] = (input_arr[i-1][j] + input_arr[i][j-1] + input_arr[i-1][j-1] + matrix[i-1][j-1]) % 2
+
+	print(input_arr)
 
 	count = 0
 
@@ -62,4 +68,5 @@ with open("CopsRunIntoEachOtherIN.txt") as f:
 				p = p + 1
 
 		print (countEvenArrays(matrix))
+		break
 	
